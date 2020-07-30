@@ -1,0 +1,42 @@
+.inputContainer {
+    text-align: left;
+    position: relative;
+    height: 60px;
+    width: 100%;
+}
+
+.inputContainer input {
+    width: 100%;
+    padding: 0;
+    padding-top: calc(var(--card-padding) * 1.6);
+    padding-bottom: calc(var(--card-padding) / 4);
+    font-size: var(--font-size);
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--color-gray-light);
+}
+
+.inputContainer input:focus {
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.inputContainer .label {
+    font-size: var(--font-size);
+    color: var(--color-gray);
+    font-weight: 500;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 54%;
+    width: 100%;
+    pointer-events: none;
+    transition: all 0.15s ease-in-out;
+}
+
+.inputContainer .active {
+    color: var(--color-primary);
+}
+
+.inputContainer .inactive {
+    color: var(--color-gray);
+}

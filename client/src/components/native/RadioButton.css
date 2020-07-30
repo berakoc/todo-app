@@ -1,0 +1,11 @@
+.radioButton {
+    width: 8px;
+    height: 8px;
+    border: 8px solid var(--color-primary-light);
+    border-radius: 99px;
+}
+
+.radioButton:hover {
+    cursor: pointer;
+    border: 8px solid var(--color-primary);
+}

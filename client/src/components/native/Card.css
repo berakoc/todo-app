@@ -1,0 +1,27 @@
+.card {
+    width: 280px;
+    border: 1px solid var(--border-color);
+    padding: var(--card-padding);
+    border-radius: var(--border-radius);
+}
+
+.card .titleBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card .title {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.card .content {
+    font-size: var(--font-size);
+    margin-bottom: 20px;
+}
+
+.card .date {
+    color: var(--color-gray);
+}

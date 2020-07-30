@@ -1,0 +1,15 @@
+.statusButton {
+    user-select: none;
+    border-radius: calc(var(--border-radius) / 4);
+    background-color: var(--color-primary);
+    color: white;
+    padding: 4px;
+    transition: all 0.15s ease-in-out;
+    text-align: center;
+    width: 100px;
+}
+
+.statusButton:hover {
+    cursor: pointer;
+    background-color: var(--color-success);
+}

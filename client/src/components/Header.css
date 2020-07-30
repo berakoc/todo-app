@@ -1,0 +1,12 @@
+#Header {
+    user-select: none;
+    text-transform: uppercase;
+    text-rendering: geometricPrecision;
+    font-size: 4rem;
+    font-weight: bold;
+    padding: 40px 0;
+}
+
+#Header > span {
+    color: var(--color-primary);
+}
