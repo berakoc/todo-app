@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Main.css'
-import Card from './native/Card'
 import TodoAdder from './TodoAdder'
+import CardList from './native/CardList'
 
 export default class Main extends Component {
     render() {
@@ -9,7 +9,7 @@ export default class Main extends Component {
             <div id="Main">
                 <TodoAdder />
                 <div className="verticalSeparator"></div>
-                <Card title="Shopping" content="Buy some eggs" date={new Date()}/>
+                <CardList />
             </div>
         )
     }

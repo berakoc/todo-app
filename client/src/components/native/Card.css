@@ -20,6 +20,7 @@
 .card .content {
     font-size: var(--font-size);
     margin-bottom: 20px;
+    min-height: 60px;
 }
 
 .card .date {
