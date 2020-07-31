@@ -16,10 +16,6 @@ interface CardProps {
 export default class Card extends Component<CardProps, EmptyState> {
     static propTypes: object
 
-    constructor(props: CardProps) {
-        super(props)
-    }
-
     render() {
         return (
             <div className="card">

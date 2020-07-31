@@ -7,6 +7,7 @@ interface CardListProps {
 }
 
 interface CardListState {
+    oldIndex: number
     index: number
     cards: Array<JSX.Element>
 }
@@ -17,6 +18,7 @@ export default class CardList extends Component<CardListProps, CardListState>{
     constructor(props: CardListProps) {
         super(props)
         this.state = {
+            oldIndex: -1,
             index: 1,
             cards: []
         }
@@ -25,7 +27,6 @@ export default class CardList extends Component<CardListProps, CardListState>{
     }
 
     componentDidMount() {
-        console.log('Mounted.')
         const cards = [<Card title="Shopping" content="Buy some eggs" date={new Date()}/>,
         <Card title="Reading" content="Read Clockwork Orange" date={new Date()}/>,
         <Card title="Homeworks" content="Finish Algebra homework" date={new Date()}/>]
@@ -38,18 +39,33 @@ export default class CardList extends Component<CardListProps, CardListState>{
         })
     }
 
-    // BUG: When hovering over left and right it interacts with StateButton. Solve it via masking
+    updateIndexAndCardSet(newIndex: number) {
+        if (newIndex === -1 || newIndex === this.state.cards.length) {
+            return
+        }
+        this.setState({
+            cards: this.state.cards.slice(0, this.state.index).concat(React.cloneElement(this.state.cards[this.state.index], { isButtonActive: false}), this.state.cards.slice(this.state.index + 1)),
+            oldIndex: this.state.index,
+            index: newIndex
+        }, () => {
+            this.generateCardSet()
+            this.setState({
+                cards: this.state.cards.slice(0, this.state.index).concat(React.cloneElement(this.state.cards[this.state.index], { isButtonActive: true}), this.state.cards.slice(this.state.index + 1))
+            })
+        })
+    }
+
     generateCardSet(): JSX.Element {
         let leftElement: JSX.Element, rightElement: JSX.Element, middleElement: JSX.Element
         if (this.state.index === 0) {
             leftElement = <div></div>
         } else {
-            leftElement = <div className="left animated">{this.state.cards[this.state.index - 1]}</div>
+            leftElement = <div onClick={() => this.updateIndexAndCardSet(this.state.index - 1)} className="left animated">{this.state.cards[this.state.index - 1]}</div>
         }
         if (this.state.index === this.state.cards.length - 1) {
             rightElement = <div></div>
         } else {
-            rightElement = <div className="right animated">{this.state.cards[this.state.index + 1]}</div>
+            rightElement = <div onClick={() => this.updateIndexAndCardSet(this.state.index + 1)} className="right animated">{this.state.cards[this.state.index + 1]}</div>
         }
         if (this.state.cards.length === 0) {
             middleElement = <div>No Todos found</div>
