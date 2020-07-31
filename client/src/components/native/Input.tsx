@@ -59,8 +59,8 @@ export default class Input extends Component<InputProps, InputState> {
         return (
             <div className="inputContainer">
                 <input onChange={this.changeTitle} value={this.state.title} onFocus={this.updateLabel} onBlur={this.updateLabel} type={this.props.type}/>
-                <label className="label">
-                <span>{this.props.placeHolder}</span>
+                <label className="label animated">
+                    <span>{this.props.placeHolder}</span>
                 </label>
             </div>
         )

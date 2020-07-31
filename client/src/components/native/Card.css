@@ -5,6 +5,7 @@
     padding: var(--card-padding);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    text-align: left;
 }
 
 .card .title {

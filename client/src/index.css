@@ -10,6 +10,7 @@
   --card-width: 280px;
   --font-size: 1.2rem;
   --box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.05);
+  --animated: all 0.2s ease-in-out;
 }
 
 .verticalSeparator {
@@ -38,7 +39,7 @@ code {
 }
 
 .animated {
-  transition: all 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .active {

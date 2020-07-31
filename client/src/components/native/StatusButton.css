@@ -4,7 +4,7 @@
     background-color: var(--color-primary);
     color: white;
     padding: 4px;
-    transition: all 0.15s ease-in-out;
+    transition: var(--animated);
     text-align: center;
     width: 100px;
 }

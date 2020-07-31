@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import Card from './Card'
 import './CardList.css'
+import SlideBar from './SlideBar'
 
 interface CardListProps {
 
 }
 
 interface CardListState {
-    oldIndex: number
     index: number
     cards: Array<JSX.Element>
 }
@@ -18,7 +18,6 @@ export default class CardList extends Component<CardListProps, CardListState>{
     constructor(props: CardListProps) {
         super(props)
         this.state = {
-            oldIndex: -1,
             index: 1,
             cards: []
         }
@@ -45,7 +44,6 @@ export default class CardList extends Component<CardListProps, CardListState>{
         }
         this.setState({
             cards: this.state.cards.slice(0, this.state.index).concat(React.cloneElement(this.state.cards[this.state.index], { isButtonActive: false}), this.state.cards.slice(this.state.index + 1)),
-            oldIndex: this.state.index,
             index: newIndex
         }, () => {
             this.generateCardSet()
@@ -83,6 +81,7 @@ export default class CardList extends Component<CardListProps, CardListState>{
         return (
             <div className="cardList animated">
                 {this.generateCardSet()}
+                <SlideBar limit={4} />
             </div>
         )
     }
