@@ -1,0 +1,9 @@
+#Footer {
+    padding: 40px 0;
+    font-size: var(--font-size);
+}
+
+#Footer a {
+    color: var(--color-primary);
+    text-decoration: underline var(--color-primary) wavy;
+}
