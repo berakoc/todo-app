@@ -1,0 +1,42 @@
+.cardList {
+    position: relative;
+}
+
+.cardList .left {
+    user-select: none;
+    position: absolute;
+    top: 0;
+    left: -140px;
+    z-index: 1;
+    transform: scale(0.5);
+    filter: blur(1.4px);
+}
+
+.cardList .left:hover {
+    cursor: pointer;
+    filter: none;
+    left: calc(-1 * var(--card-width));
+    transform: scale(0.7);
+}
+
+.cardList .right {
+    user-select: none;
+    position: absolute;
+    top: 0;
+    right: -140px;
+    z-index: 1;
+    transform: scale(0.5);
+    filter: blur(1.4px);
+}
+
+.cardList .right:hover {
+    cursor: pointer;
+    filter: none;
+    right: calc(-1 * var(--card-width));
+    transform: scale(0.7)
+}
+
+.cardList .middle {
+    position: relative;
+    z-index: 2;
+}

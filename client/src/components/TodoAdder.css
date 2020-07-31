@@ -3,4 +3,7 @@
     padding: var(--card-padding);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
+    width: 280px;
+    margin: 0 auto;
+    box-shadow: var(--box-shadow);
 }

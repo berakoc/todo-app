@@ -3,7 +3,8 @@
     text-transform: uppercase;
     display: inline-block;
     border: 1px solid var(--color-primary);
-    color: var(--color-primary-light);
+    color: white;
+    background-color: var(--color-primary-light);
     border-radius: calc(var(--border-radius) / 4);
     padding: 8px 16px;
     font-weight: 500;

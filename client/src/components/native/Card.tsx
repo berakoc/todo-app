@@ -2,29 +2,31 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './Card.css'
 import Utils from '../../libs/Utils'
+import { EmptyState } from '../../libs/Interfaces'
 import StatusButton from './StatusButton'
 
 interface CardProps {
     title: string,
     content: string,
-    date: Date
+    date: Date,
+    isButtonActive?: boolean
 }
 
-interface CardState {}
-
 // TODO: Add markdown support for the card
-export default class Card extends Component<CardProps, CardState> {
+export default class Card extends Component<CardProps, EmptyState> {
     static propTypes: object
+
+    constructor(props: CardProps) {
+        super(props)
+    }
 
     render() {
         return (
             <div className="card">
-                <div className="titleBar">
-                    <div className="title">{this.props.title}</div>
-                    <StatusButton defaultText="Not finished" hoverText="Finish now!"/>
-                </div>
+                <div className="title">{this.props.title}</div>
                 <div className="content">{this.props.content}</div>
                 <div className="date">{Utils.convertDateToString(this.props.date)}</div>
+                <StatusButton isActive={this.props.isButtonActive === true} defaultText="Not finished" hoverText="Complete"/>
             </div>
         )
     }
@@ -33,5 +35,6 @@ export default class Card extends Component<CardProps, CardState> {
 Card.propTypes = {
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date).isRequired
+    date: PropTypes.instanceOf(Date).isRequired,
+    isButtonActive: PropTypes.bool
 }

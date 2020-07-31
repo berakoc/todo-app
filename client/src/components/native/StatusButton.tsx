@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import './StatusButton.css'
 
 interface StatusButtonProps {
+    isActive: boolean
     defaultText: string
     hoverText: string
 }
@@ -23,11 +24,17 @@ export default class StatusButton extends Component<StatusButtonProps, StatusBut
         this.deactivateCurrentText = this.deactivateCurrentText.bind(this)
     }
 
-    activateCurrentText(_event: MouseEvent): void {
+    activateCurrentText(event: MouseEvent): void {
+        if (!this.props.isActive) {
+            (event.target as HTMLDivElement).style.pointerEvents = 'none'
+        }
         this.setState({ currentText: this.props.hoverText })
     }
 
-    deactivateCurrentText(_event: MouseEvent): void {
+    deactivateCurrentText(event: MouseEvent): void {
+        if (!this.props.isActive) {
+            (event.target as HTMLDivElement).style.pointerEvents = 'none'
+        }
         this.setState({ currentText: this.props.defaultText })
     }
 
@@ -41,6 +48,7 @@ export default class StatusButton extends Component<StatusButtonProps, StatusBut
 }
 
 StatusButton.propTypes = {
+    isActive: PropTypes.bool.isRequired,
     defaultText: PropTypes.string.isRequired,
     hoverText: PropTypes.string.isRequired
 }

@@ -1,20 +1,16 @@
 .card {
-    width: 280px;
+    width: var(--card-width);
+    background-color: white;
     border: 1px solid var(--border-color);
     padding: var(--card-padding);
     border-radius: var(--border-radius);
-}
-
-.card .titleBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    box-shadow: var(--box-shadow);
 }
 
 .card .title {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 500;
+    margin-bottom: 20px;
 }
 
 .card .content {
@@ -25,4 +21,5 @@
 
 .card .date {
     color: var(--color-gray);
+    margin-bottom: 20px;
 }
