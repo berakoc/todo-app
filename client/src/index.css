@@ -24,7 +24,25 @@ body {
   box-sizing: border-box;
 }
 
+textarea, input {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.animated {
+  transition: all 0.15s ease-in-out;
+}
+
+.active {
+  color: var(--color-primary) !important;
+}
+
+.inactive {
+  color: var(--color-gray) !important;
 }

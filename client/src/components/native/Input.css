@@ -32,11 +32,3 @@
     pointer-events: none;
     transition: all 0.15s ease-in-out;
 }
-
-.inputContainer .active {
-    color: var(--color-primary);
-}
-
-.inputContainer .inactive {
-    color: var(--color-gray);
-}

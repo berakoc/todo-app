@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './TodoAdder.css'
 import Input from './native/Input'
-import InputArea from './native/InputArea'
+import TextArea from './native/TextArea'
 
 interface TodoAdderProps {
 
@@ -19,6 +19,7 @@ export default class TodoAdder extends Component<TodoAdderProps, TodoAdderState>
         return (
             <div id="TodoAdder">
                 <Input type="text" placeHolder="Title"/>
+                <TextArea title="Content"/>
             </div>
         )
     }

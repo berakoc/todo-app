@@ -1,4 +1,4 @@
-import React, { Component, FocusEvent } from 'react'
+import React, { Component, FocusEvent, ChangeEvent } from 'react'
 import PropTypes from 'prop-types'
 import './Input.css'
 
@@ -9,6 +9,7 @@ interface InputProps {
 
 interface InputState {
     labelState: LabelState
+    title: string
 }
 
 enum LabelState {
@@ -22,9 +23,11 @@ export default class Input extends Component<InputProps, InputState> {
     constructor(props: InputProps) {
         super(props)
         this.state = {
-            labelState: LabelState.INACTIVE
+            labelState: LabelState.INACTIVE,
+            title: ''
         }
         this.updateLabel = this.updateLabel.bind(this)
+        this.changeTitle = this.changeTitle.bind(this)
     }
 
     updateLabel(event: FocusEvent): void {
@@ -46,10 +49,16 @@ export default class Input extends Component<InputProps, InputState> {
         }
     }
 
+    changeTitle(event: ChangeEvent) {
+        this.setState({
+            title: (event.target as HTMLInputElement).value
+        })
+    }
+
     render() {
         return (
             <div className="inputContainer">
-                <input onFocus={this.updateLabel} onBlur={this.updateLabel} type={this.props.type}/>
+                <input onChange={this.changeTitle} value={this.state.title} onFocus={this.updateLabel} onBlur={this.updateLabel} type={this.props.type}/>
                 <label className="label">
                 <span>{this.props.placeHolder}</span>
                 </label>
