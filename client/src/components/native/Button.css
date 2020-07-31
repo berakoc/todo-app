@@ -1,15 +1,16 @@
-.nativeButton {
+.button {
+    user-select: none;
+    text-transform: uppercase;
     display: inline-block;
     border: 1px solid var(--color-primary);
     color: var(--color-primary-light);
-    border-radius: var(--border-radius);
+    border-radius: calc(var(--border-radius) / 4);
     padding: 8px 16px;
     font-weight: 500;
-    font-size: var(--font-size);
-    transition: all 0.15s ease-in-out;
+    font-size: calc(var(--font-size) * 0.8);
 }
 
-.nativeButton:hover {
+.button:hover {
     cursor: pointer;
     color: white;
     background-color: var(--color-primary);

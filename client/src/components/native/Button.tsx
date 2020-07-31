@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, MouseEvent } from 'react'
 import PropTypes from 'prop-types'
 import './Button.css'
 
 interface ButtonProps {
     text: string
+    handler(event: MouseEvent): void
 }
 
 interface ButtonState {}
@@ -13,7 +14,7 @@ export default class Button extends Component<ButtonProps, ButtonState> {
 
     render() {
         return (
-            <div className="nativeButton">
+            <div onClick={this.props.handler} className="animated button">
                 {this.props.text}
             </div>
         )
@@ -21,5 +22,6 @@ export default class Button extends Component<ButtonProps, ButtonState> {
 }
 
 Button.propTypes = {
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    handler: PropTypes.func.isRequired
 }

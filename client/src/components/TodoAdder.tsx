@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import './TodoAdder.css'
 import Input from './native/Input'
 import TextArea from './native/TextArea'
+import Button from './native/Button'
 
 interface TodoAdderProps {
 
@@ -20,6 +21,7 @@ export default class TodoAdder extends Component<TodoAdderProps, TodoAdderState>
             <div id="TodoAdder">
                 <Input type="text" placeHolder="Title"/>
                 <TextArea title="Content"/>
+                <Button text="add" handler={() => console.log('Mouse is activated')}/>
             </div>
         )
     }
