@@ -31,7 +31,6 @@ export default class Main extends Component<EmptyProps, TodoAdderState> {
                 <TodoAdder addTodoCard={this.state.addTodoCard} />
                 <div className="verticalSeparator"></div>
                 <CardList ref={this.cardListRef} />
-                <div>{`${JSON.stringify(this.cardListRef)}`}</div>
             </div>
         )
     }
