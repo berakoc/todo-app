@@ -19,16 +19,20 @@ export default class TextArea extends Component<TextAreaProps, TextAreaState> {
         this.updateContent = this.updateContent.bind(this)
         this.resetContent = this.resetContent.bind(this)
         this.getContent = this.getContent.bind(this)
+        this.emitWarning = this.emitWarning.bind(this)
     }
 
     updateActivity(event: ChangeEvent) {
         (document.querySelector('.textArea label') as HTMLLabelElement).className = ''
         switch (event.type) {
             case 'focus': {
+                (document.querySelector('.textArea label') as HTMLSpanElement).style.removeProperty('color');
+                (document.querySelector('.textArea textarea') as HTMLTextAreaElement).style.borderColor = 'var(--color-primary)';
                 (document.querySelector('.textArea label') as HTMLLabelElement).classList.add('active')
                 break
             }
             case 'blur': {
+                (document.querySelector('.textArea textarea') as HTMLTextAreaElement).style.borderColor = 'var(--color-gray)';
                 (document.querySelector('.textArea label') as HTMLLabelElement).classList.add('inactive')
             }
         }
@@ -36,6 +40,12 @@ export default class TextArea extends Component<TextAreaProps, TextAreaState> {
 
     getContent() {
         return this.state.content
+    }
+
+    emitWarning() {
+        const textArea = (document.querySelector('.textArea > textarea') as HTMLTextAreaElement)
+        textArea.style.borderColor = 'var(--color-warning-light)';
+        (document.querySelector('.textArea > label') as HTMLLabelElement).style.color = 'var(--color-warning-light)'
     }
 
     resetContent() {

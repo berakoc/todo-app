@@ -47,9 +47,9 @@ code {
 }
 
 .active {
-  color: var(--color-primary) !important;
+  color: var(--color-primary);
 }
 
 .inactive {
-  color: var(--color-gray) !important;
+  color: var(--color-gray);
 }

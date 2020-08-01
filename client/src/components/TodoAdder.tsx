@@ -14,8 +14,10 @@ interface TodoAdderState {
     content: string
     getTitle?: {(): string}
     getContent?: {(): string}
+    emitTitleWarning?: {(): void}
     resetTitle?: {(): void}
     resetContent?: {(): void}
+    emitContentWarning?: {(): void}
 }
 
 export default class TodoAdder extends Component<TodoProps, TodoAdderState> {
@@ -31,13 +33,15 @@ export default class TodoAdder extends Component<TodoProps, TodoAdderState> {
         this.titleRef = (input: Input) => {
             this.setState({
                 getTitle: input.getTitle,
-                resetTitle: input.resetTitle
+                resetTitle: input.resetTitle,
+                emitTitleWarning: input.emitWarning
             })
         }
         this.contentRef = (textArea: TextArea) => {
             this.setState({
                 getContent: textArea.getContent,
-                resetContent: textArea.resetContent
+                resetContent: textArea.resetContent,
+                emitContentWarning: textArea.emitWarning
             })
         }
         this.handleClick = this.handleClick.bind(this)
@@ -48,6 +52,14 @@ export default class TodoAdder extends Component<TodoProps, TodoAdderState> {
             title: this.state.getTitle!(),
             content: this.state.getContent!()
         }, () => {
+            if (this.state.title === '') {
+                this.state.emitTitleWarning!()
+                return
+            }
+            if (this.state.content === '') {
+                this.state.emitContentWarning!()
+            }
+            if (!(this.state.title && this.state.content)) return
             this.props.addTodoCard(<Card title={this.state.title} content={this.state.content} date={new Date()} />)
             this.state.resetTitle!()
             this.state.resetContent!()

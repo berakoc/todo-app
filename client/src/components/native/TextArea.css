@@ -18,13 +18,16 @@
     font-size: calc(var(--font-size) * 0.8);
 }
 
+.textArea textArea::placeholder {
+    color: var(--color-warning-light);
+}
+
 .textArea textArea:focus {
     border: 2px solid var(--color-primary);
 }
 
 .textArea label {
     position: absolute;
-    color: var(--color-gray);
     font-weight: 500;
     top: -7%;
     left: 4%;

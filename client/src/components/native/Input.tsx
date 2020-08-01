@@ -28,12 +28,15 @@ export default class Input extends Component<InputProps, InputState> {
         this.changeTitle = this.changeTitle.bind(this)
         this.resetTitle = this.resetTitle.bind(this)
         this.getTitle = this.getTitle.bind(this)
+        this.emitWarning = this.emitWarning.bind(this)
     }
 
     updateLabel(event: FocusEvent): void {
         (document.querySelector('.inputContainer .label > span') as HTMLSpanElement).className = ''
         switch (event.type) {
             case 'focus': {
+                (document.querySelector('.inputContainer > .label > span') as HTMLSpanElement).style.removeProperty('color');
+                (document.querySelector('.inputContainer input') as HTMLInputElement).style.borderBottomColor = 'var(--color-primary)';
                 (document.querySelector('.inputContainer .label > span') as HTMLSpanElement).classList.add('active');
                 if (!(event.target as HTMLInputElement).value) {
                     (document.querySelector('.inputContainer .label') as HTMLLabelElement).style.height = '100%'
@@ -41,12 +44,19 @@ export default class Input extends Component<InputProps, InputState> {
                 break
             }
             case 'blur': {
+                (document.querySelector('.inputContainer input') as HTMLInputElement).style.borderBottomColor = 'var(--color-gray)';
                 (document.querySelector('.inputContainer .label > span') as HTMLSpanElement).classList.add('inactive')
                 if (!(event.target as HTMLInputElement).value) {
                     (document.querySelector('.inputContainer .label') as HTMLLabelElement).style.height = '54%'
                 }
             }
         }
+    }
+
+    emitWarning() {
+        const input = (document.querySelector('.inputContainer > input') as HTMLInputElement)
+        input.style.borderColor = 'var(--color-warning-light)';
+        (document.querySelector('.inputContainer > .label > span') as HTMLSpanElement).style.color = 'var(--color-warning-light)'
     }
 
     getTitle() {
