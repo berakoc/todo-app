@@ -12,7 +12,7 @@ interface SlideBarState {
     multiplier: number
 }
 
-const SLIDE_BAR_DOT_LIMIT = 2
+const SLIDE_BAR_DOT_LIMIT = 5
 
 export default class SlideBar extends Component<SlideBarProps, SlideBarState> {
     constructor(props: SlideBarProps) {

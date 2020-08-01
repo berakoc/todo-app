@@ -1,10 +1,10 @@
-import React, { Component, MouseEvent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './Button.css'
 
 interface ButtonProps {
     text: string
-    handler(event: MouseEvent): void
+    handler(): void
 }
 
 interface ButtonState {}
@@ -14,7 +14,7 @@ export default class Button extends Component<ButtonProps, ButtonState> {
 
     render() {
         return (
-            <div onClick={this.props.handler} className="animated button">
+            <div onClick={(_) => this.props.handler()} className="animated button">
                 {this.props.text}
             </div>
         )

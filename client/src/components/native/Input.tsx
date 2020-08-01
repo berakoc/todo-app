@@ -1,9 +1,9 @@
 import React, { Component, FocusEvent, ChangeEvent } from 'react'
-import PropTypes from 'prop-types'
 import './Input.css'
 
 interface InputProps {
-    placeHolder: string,
+    ref: Function
+    placeHolder: string
     type: string
 }
 
@@ -18,8 +18,6 @@ enum LabelState {
 }
 
 export default class Input extends Component<InputProps, InputState> {
-    static propTypes = {}
-
     constructor(props: InputProps) {
         super(props)
         this.state = {
@@ -28,6 +26,8 @@ export default class Input extends Component<InputProps, InputState> {
         }
         this.updateLabel = this.updateLabel.bind(this)
         this.changeTitle = this.changeTitle.bind(this)
+        this.resetTitle = this.resetTitle.bind(this)
+        this.getTitle = this.getTitle.bind(this)
     }
 
     updateLabel(event: FocusEvent): void {
@@ -49,6 +49,16 @@ export default class Input extends Component<InputProps, InputState> {
         }
     }
 
+    getTitle() {
+        return this.state.title
+    }
+
+    resetTitle() {
+        this.setState({
+            title: ''
+        })
+    }
+
     changeTitle(event: ChangeEvent) {
         this.setState({
             title: (event.target as HTMLInputElement).value
@@ -65,9 +75,4 @@ export default class Input extends Component<InputProps, InputState> {
             </div>
         )
     }
-}
-
-Input.propTypes = {
-    placeHolder: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired
 }

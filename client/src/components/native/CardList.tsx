@@ -4,7 +4,7 @@ import './CardList.css'
 import SlideBar from './SlideBar'
 
 interface CardListProps {
-
+    ref: Function
 }
 
 interface CardListState {
@@ -22,6 +22,7 @@ export default class CardList extends Component<CardListProps, CardListState>{
         }
         this.generateCardSet = this.generateCardSet.bind(this)
         this.updateIndexAndCardSet = this.updateIndexAndCardSet.bind(this)
+        this.addTodoCard = this.addTodoCard.bind(this)
     }
 
     componentDidMount() {
@@ -34,6 +35,12 @@ export default class CardList extends Component<CardListProps, CardListState>{
             this.setState({
                 cards: this.state.cards.slice(0, this.state.index).concat(React.cloneElement(this.state.cards[this.state.index], { isButtonActive: true}), this.state.cards.slice(this.state.index + 1))
             })
+        })
+    }
+
+    addTodoCard(card: JSX.Element) {
+        this.setState({
+            cards: this.state.cards.concat(card)
         })
     }
 

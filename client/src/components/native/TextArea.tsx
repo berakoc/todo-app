@@ -1,8 +1,8 @@
 import React, { Component, ChangeEvent } from 'react'
-import PropTypes from 'prop-types'
 import './TextArea.css'
 
 interface TextAreaProps {
+    ref: Function
     title: string
 }
 
@@ -11,14 +11,14 @@ interface TextAreaState {
 }
 
 export default class TextArea extends Component<TextAreaProps, TextAreaState> {
-    static propTypes = {}
-
     constructor(props: TextAreaProps) {
         super(props)
         this.state = {
             content: '',
         }
         this.updateContent = this.updateContent.bind(this)
+        this.resetContent = this.resetContent.bind(this)
+        this.getContent = this.getContent.bind(this)
     }
 
     updateActivity(event: ChangeEvent) {
@@ -32,6 +32,16 @@ export default class TextArea extends Component<TextAreaProps, TextAreaState> {
                 (document.querySelector('.textArea label') as HTMLLabelElement).classList.add('inactive')
             }
         }
+    }
+
+    getContent() {
+        return this.state.content
+    }
+
+    resetContent() {
+        this.setState({
+            content: ''
+        })
     }
 
     updateContent(event: ChangeEvent) {
@@ -48,8 +58,4 @@ export default class TextArea extends Component<TextAreaProps, TextAreaState> {
             </div>
         )
     }
-}
-
-TextArea.propTypes = {
-    title: PropTypes.string.isRequired
 }
