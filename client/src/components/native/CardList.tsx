@@ -13,7 +13,6 @@ interface CardListState {
 }
 
 export default class CardList extends Component<CardListProps, CardListState>{
-    private isDataLoaded: boolean
 
     constructor(props: CardListProps) {
         super(props)
@@ -21,8 +20,8 @@ export default class CardList extends Component<CardListProps, CardListState>{
             index: 1,
             cards: []
         }
-        this.isDataLoaded = false
         this.generateCardSet = this.generateCardSet.bind(this)
+        this.updateIndexAndCardSet = this.updateIndexAndCardSet.bind(this)
     }
 
     componentDidMount() {
@@ -72,8 +71,8 @@ export default class CardList extends Component<CardListProps, CardListState>{
         }
         return <React.Fragment>
             {leftElement}
-            {rightElement}
             {middleElement}
+            {rightElement}
         </React.Fragment>
     }
 
@@ -81,7 +80,7 @@ export default class CardList extends Component<CardListProps, CardListState>{
         return (
             <div className="cardList animated">
                 {this.generateCardSet()}
-                <SlideBar limit={4} />
+                <SlideBar sendIndexProxy={this.updateIndexAndCardSet} currentIndex={this.state.index} numberOfCards={this.state.cards.length} />
             </div>
         )
     }

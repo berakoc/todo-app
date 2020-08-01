@@ -8,11 +8,12 @@
 
 .slideBar svg {
     transition: var(--animated);
+    color: var(--color-gray-dimmed);
 }
 
 .slideBar svg:hover {
     cursor: pointer;
-    color: var(--color-primary);
+    color: var(--color-success-dimmed);
 }
 
 .slideBar span {
@@ -21,7 +22,20 @@
     align-items: center;
 }
 
+.slideBar .dot > svg {
+    color: white;
+    fill: var(--color-gray-dimmed);
+}
+
 .slideBar .dot > svg:hover {
     cursor: pointer;
-    fill: var(--color-primary);
+    fill: var(--color-gray);
+}
+
+.slideBar .active > svg {
+    fill: var(--color-success);
+}
+
+.slideBar .active > svg:hover {
+    fill: var(--color-success);
 }
