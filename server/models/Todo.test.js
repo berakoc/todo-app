@@ -5,7 +5,7 @@ const Θ = {
 }
 const TestTodo = mongoose.model('TestTodo', require('./Todo').todoSchema)
 const { convertDateToString } = require('../libs/Utils')
-const { ConsoleLogger } = require('../libs/Logger')
+const { consoleLogger } = require('../libs/Logger')
 const todoData = {
     title: 'Test Title',
     content: 'Test content',
@@ -17,7 +17,7 @@ describe('Todo Model Test', () => {
     beforeAll(async () => {
         await mongoose.connect(Θ.testDbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
             if (err) {
-                ConsoleLogger.error(err)
+                consoleLogger.error(err)
                 process.exit(1)
             }
         })
@@ -31,5 +31,12 @@ describe('Todo Model Test', () => {
         expect(savedTodo.content).toBe(todoData.content)
         expect(savedTodo.date).toBe(todoData.date)
         done()
+    })
+
+    afterAll(() => {
+        mongoose.connection.db.dropCollection('testtodos', () => {
+            mongoose.disconnect()
+            consoleLogger.info('Document[testtodos] has been removed from the database')
+        })
     })
 })

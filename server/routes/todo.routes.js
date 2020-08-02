@@ -27,7 +27,7 @@ todoRouter.post('/add', async (req, res) => {
         })
         consoleLogger.info(`Todo[${todo}] added to the database.`)
     }
-    res.send('Todo has been recorded to database.')
+    res.json('Todo has been recorded to database.')
 })
 
 
