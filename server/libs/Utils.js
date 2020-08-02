@@ -14,7 +14,17 @@ class DatabaseNotFoundError extends Error {
     }
 }
 
+function addZerosToTimeValue(value) {
+    return ('0'.repeat(2) + value).slice(-2)
+}
+
+const convertDateToString = (date) => {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} ${addZerosToTimeValue(date.getHours())}:${addZerosToTimeValue(date.getMinutes())}:${addZerosToTimeValue(date.getSeconds())}`
+}
+
 module.exports = {
     generateRandomPort,
-    DatabaseNotFoundError
+    DatabaseNotFoundError,
+    convertDateToString
 }
