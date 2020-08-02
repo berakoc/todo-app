@@ -4,6 +4,7 @@ const Θ = {
     testDbUrl: process.env.DB_URL
 }
 const TestTodo = mongoose.model('TestTodo', require('./Todo').todoSchema)
+const DemoTodo = mongoose.model('DemoTodo', require('./Todo').todoSchema, 'todo-demo')
 const { convertDateToString } = require('../libs/Utils')
 const { consoleLogger } = require('../libs/Logger')
 const todoData = {
@@ -31,6 +32,21 @@ describe('Todo Model Test', () => {
         expect(savedTodo.content).toBe(todoData.content)
         expect(savedTodo.date).toBe(todoData.date)
         done()
+    })
+
+    it('Obtain Todo successfully', async done => {
+        await DemoTodo.find({}, (err, todos) => {
+            if (err) {
+                consoleLogger.error(err)
+                process.exit(1)
+            }
+            const demoTodo = todos[0]
+            expect(demoTodo._id).toBeDefined()
+            expect(demoTodo._doc.title).toBe('Demo Title')
+            expect(demoTodo._doc.content).toBe('Demo content')
+            expect(demoTodo._doc.date).toBe('Aug 3, 2020 00:57:17')
+            done()
+        })
     })
 
     afterAll(() => {
