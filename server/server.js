@@ -12,6 +12,7 @@ const { generateRandomPort, DatabaseNotFoundError } = require('./libs/Utils')
 // Defined backend cors policy and set json as data protocol
 app.use(cors())
 app.use(express.json())
+app.set('json spaces', 4)
 
 // Inject the routes to the app
 const todoRouter = require('./routes/todo.routes')

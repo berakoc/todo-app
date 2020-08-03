@@ -15,7 +15,7 @@ app.listen(Δ.port, () => {
 // Error handling and starting the database
 try {
     if (Δ.db === undefined) throw new DatabaseNotFoundError()
-    mongoose.connect(Δ.db, { useUnifiedTopology: true, useNewUrlParser: true}, () => {
+    mongoose.connect(Δ.db, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }, () => {
         console.log('\x1b[35m%s\x1b[0m', 'Connected to database')
     })
 } catch (err) {

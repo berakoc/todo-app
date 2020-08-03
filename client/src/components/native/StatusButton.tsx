@@ -6,6 +6,7 @@ interface StatusButtonProps {
     isActive: boolean
     defaultText: string
     hoverText: string
+    handleClick: Function
 }
 
 interface StatusButtonState {
@@ -40,7 +41,7 @@ export default class StatusButton extends Component<StatusButtonProps, StatusBut
 
     render() {
         return (
-            <div className="statusButton" onMouseEnter={this.activateCurrentText} onMouseLeave={this.deactivateCurrentText}>
+            <div className="statusButton" onClick={(_event) => this.props.handleClick()} onMouseEnter={this.activateCurrentText} onMouseLeave={this.deactivateCurrentText}>
                 {this.state.currentText}
             </div>
         )

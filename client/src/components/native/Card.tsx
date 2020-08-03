@@ -8,11 +8,11 @@ interface CardProps {
     content: string,
     date: string,
     isButtonActive?: boolean
+    handleClick: Function
 }
 
 // TODO: Add markdown support for the card
 export default class Card extends Component<CardProps, EmptyState> {
-    static propTypes: object
 
     render() {
         return (
@@ -20,7 +20,7 @@ export default class Card extends Component<CardProps, EmptyState> {
                 <div className="title">{this.props.title}</div>
                 <div className="content">{this.props.content}</div>
                 <div className="date">{this.props.date}</div>
-                <StatusButton isActive={this.props.isButtonActive === true} defaultText="Not finished" hoverText="Complete"/>
+                <StatusButton handleClick={() => this.props.handleClick(this)} isActive={this.props.isButtonActive === true} defaultText="Not finished" hoverText="Complete"/>
             </div>
         )
     }

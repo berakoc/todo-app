@@ -17,6 +17,7 @@ todoRouter.post('/add', async (req, res) => {
     const todo = new Todo ({
         title: req.body.title,
         content: req.body.content,
+        isFinished: req.body.isFinished,
         date: req.body.date
     })
     if (!isTestingMode) {
@@ -33,15 +34,33 @@ todoRouter.post('/add', async (req, res) => {
 todoRouter.get('/', async (req, res) => {
     const isTestingMode = req.body.isTestingMode
     delete req.body.isTestingMode
+    const query = req.query.all ? {} : { isFinished: req.query.isFinished || false }
     if (!isTestingMode) {
-        const todos = await Todo.find({})
-        res.send(todos)
-        consoleLogger.info('Obtained all todos in the database.')
+        const todos = await Todo.find(query)
+        res.json(todos)
+        consoleLogger.info(`Obtained ${req.query.all ? 'all' : req.query.isFinished === 'true' ? 'finished' : 'unfinished'} todos`)
         consoleLogger.info(`Number of records: ${todos.length}`)
     } else {
         res.json('Todos has been obtained from database.')
     }
 })
 
+todoRouter.put('/finish', async (req, res) => {
+    const isTestingMode = req.body.isTestingMode
+    if (!isTestingMode) {
+        const query = {
+            date: req.body.date
+        }
+        await Todo.findOneAndUpdate(query, { isFinished: true }, (err, updatedTodo) => {
+            if (err) {
+                consoleLogger.error(err)
+                process.exit(1)
+            }
+            res.send(updatedTodo)
+        })
+    } else {
+        res.json('Updated given todo as finished.')
+    }
+})
 
 module.exports = todoRouter

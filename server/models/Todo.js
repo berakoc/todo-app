@@ -9,6 +9,10 @@ const todoSchema = new Schema({
         type: String,
         required: true,
     },
+    isFinished: {
+        type: Boolean,
+        required: true,
+    },
     date: {
         type: String,
         required: true,

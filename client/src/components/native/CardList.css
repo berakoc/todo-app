@@ -41,3 +41,7 @@
     position: relative;
     z-index: 2;
 }
+
+.cardList .noTodo {
+    font-size: var(--font-size);
+}

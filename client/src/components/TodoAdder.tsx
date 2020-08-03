@@ -9,6 +9,7 @@ import Middleware from '../libs/Middleware'
 
 interface TodoProps {
     addTodoCard(card: JSX.Element | void): void
+    removeTodoCard(card: JSX.Element | void): void
 }
 
 interface TodoAdderState {
@@ -66,9 +67,10 @@ export default class TodoAdder extends Component<TodoProps, TodoAdderState> {
             Middleware.addTodo({
                 title: this.state.title,
                 content: this.state.content,
+                isFinished: false,
                 date
             })
-            this.props.addTodoCard(<Card title={this.state.title} content={this.state.content} date={date} />)
+            this.props.addTodoCard(<Card handleClick={this.props.removeTodoCard} title={this.state.title} content={this.state.content} date={date} />)
             this.state.resetTitle!()
             this.state.resetContent!()
         })

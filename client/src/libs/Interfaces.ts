@@ -7,6 +7,7 @@ export interface TodoDatabaseInterface {
     _id: string
     title: string
     content: string
+    isFinished: boolean
     date: string
     __v?: zero
 }
@@ -14,5 +15,11 @@ export interface TodoDatabaseInterface {
 export interface TodoAppInterface {
     title: string
     content: string
+    isFinished: boolean
     date: string
+}
+
+export interface ArrayRemoveReturnType<T> {
+    array: Array<T>,
+    removedElement: T
 }

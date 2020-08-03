@@ -53,3 +53,7 @@ code {
 .inactive {
   color: var(--color-gray);
 }
+
+.invisible {
+  display: none;
+}

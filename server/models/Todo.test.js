@@ -10,6 +10,7 @@ const { consoleLogger } = require('../libs/Logger')
 const todoData = {
     title: 'Test Title',
     content: 'Test content',
+    isFinished: false,
     date: convertDateToString(new Date())
 }
 
@@ -30,6 +31,7 @@ describe('Todo Model Test', () => {
         expect(savedTodo._id).toBeDefined()
         expect(savedTodo.title).toBe(todoData.title)
         expect(savedTodo.content).toBe(todoData.content)
+        expect(savedTodo.isFinished).toBe(todoData.isFinished)
         expect(savedTodo.date).toBe(todoData.date)
         done()
     })
@@ -44,6 +46,7 @@ describe('Todo Model Test', () => {
             expect(demoTodo._id).toBeDefined()
             expect(demoTodo._doc.title).toBe('Demo Title')
             expect(demoTodo._doc.content).toBe('Demo content')
+            expect(demoTodo._doc.isFinished).toBe(false)
             expect(demoTodo._doc.date).toBe('Aug 3, 2020 00:57:17')
             done()
         })

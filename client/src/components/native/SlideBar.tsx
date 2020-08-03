@@ -23,7 +23,7 @@ export default class SlideBar extends Component<SlideBarProps, SlideBarState> {
     }
 
     computeMaximumMultiplier() {
-        return Math.floor(this.props.numberOfCards / SLIDE_BAR_DOT_LIMIT)
+        return Math.floor((this.props.numberOfCards - 1) / SLIDE_BAR_DOT_LIMIT)
     }
 
     updateMultiplier(accumulator: number) {
