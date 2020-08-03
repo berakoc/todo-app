@@ -5,6 +5,7 @@ import TextArea from './native/TextArea'
 import Button from './native/Button'
 import Card from './native/Card'
 import Utils from '../libs/Utils'
+import Middleware from '../libs/Middleware'
 
 interface TodoProps {
     addTodoCard(card: JSX.Element | void): void
@@ -61,7 +62,13 @@ export default class TodoAdder extends Component<TodoProps, TodoAdderState> {
                 this.state.emitContentWarning!()
             }
             if (!(this.state.title && this.state.content)) return
-            this.props.addTodoCard(<Card title={this.state.title} content={this.state.content} date={Utils.convertDateToString(new Date())} />)
+            const date = Utils.convertDateToString(new Date())
+            Middleware.addTodo({
+                title: this.state.title,
+                content: this.state.content,
+                date
+            })
+            this.props.addTodoCard(<Card title={this.state.title} content={this.state.content} date={date} />)
             this.state.resetTitle!()
             this.state.resetContent!()
         })

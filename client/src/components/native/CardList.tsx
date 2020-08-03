@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Card from './Card'
 import './CardList.css'
 import SlideBar from './SlideBar'
-import { TodoInterface } from '../../libs/Interfaces'
+import { TodoDatabaseInterface } from '../../libs/Interfaces'
 import Middleware from '../../libs/Middleware'
 
 interface CardListProps {
@@ -29,7 +29,7 @@ export default class CardList extends Component<CardListProps, CardListState>{
 
     componentDidMount() {
         Middleware.getTodos().then(todos => {
-            const cards = (todos as TodoInterface[]).map(todo => {
+            const cards = (todos as TodoDatabaseInterface[]).map(todo => {
                 return <Card title={todo.title} content={todo.content} date={todo.date} />
             })
             this.setState({
