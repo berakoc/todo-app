@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Card from './Card'
 import './CardList.css'
 import SlideBar from './SlideBar'
+import { TodoInterface } from '../../libs/Interfaces'
+import Middleware from '../../libs/Middleware'
 
 interface CardListProps {
     ref: Function
@@ -26,14 +28,16 @@ export default class CardList extends Component<CardListProps, CardListState>{
     }
 
     componentDidMount() {
-        const cards = [<Card title="Shopping" content="Buy some eggs" date={new Date()}/>,
-        <Card title="Reading" content="Read Clockwork Orange" date={new Date()}/>,
-        <Card title="Homeworks" content="Finish Algebra homework" date={new Date()}/>]
-        this.setState({
-            cards: this.state.cards.concat(cards)
-        }, () => {
+        Middleware.getTodos().then(todos => {
+            const cards = (todos as TodoInterface[]).map(todo => {
+                return <Card title={todo.title} content={todo.content} date={todo.date} />
+            })
             this.setState({
-                cards: this.state.cards.slice(0, this.state.index).concat(React.cloneElement(this.state.cards[this.state.index], { isButtonActive: true}), this.state.cards.slice(this.state.index + 1))
+                cards: this.state.cards.concat(cards)
+            }, () => {
+                this.setState({
+                    cards: this.state.cards.slice(0, this.state.index).concat(React.cloneElement(this.state.cards[this.state.index], { isButtonActive: true}), this.state.cards.slice(this.state.index + 1))
+                })
             })
         })
     }

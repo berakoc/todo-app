@@ -35,7 +35,6 @@ todoRouter.get('/', async (req, res) => {
     delete req.body.isTestingMode
     if (!isTestingMode) {
         const todos = await Todo.find({})
-        consoleLogger.info(todos[0]._id)
         res.send(todos)
         consoleLogger.info('Obtained all todos in the database.')
         consoleLogger.info(`Number of records: ${todos.length}`)
