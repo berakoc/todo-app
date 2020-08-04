@@ -81,7 +81,7 @@ export default class TodoAdder extends Component<TodoProps, TodoAdderState> {
             <div id="TodoAdder">
                 <Input ref={this.titleRef} type="text" placeHolder="Title"/>
                 <TextArea ref={this.contentRef} title="Content"/>
-                <Button text="add" handler={this.handleClick}/>
+                <Button colorName="color-primary" text="add" handler={this.handleClick}/>
             </div>
         )
     }

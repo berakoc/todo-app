@@ -17,10 +17,6 @@
   --animated: all 0.2s ease-in-out;
 }
 
-.verticalSeparator {
-  height: 40px;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -42,6 +38,14 @@ code {
     monospace;
 }
 
+.verticalSeparator {
+  height: 40px;
+}
+
+.verticalSeparatorSmall {
+  height: 20px;
+}
+
 .animated {
   transition: all 0.2s ease-in-out;
 }
@@ -56,4 +60,17 @@ code {
 
 .invisible {
   display: none;
+}
+
+.flexTwo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media only screen and (max-width: 840px) {
+  .left, .right {
+    display: none;
+  }
 }

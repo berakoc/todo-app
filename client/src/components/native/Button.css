@@ -2,9 +2,9 @@
     user-select: none;
     text-transform: uppercase;
     display: inline-block;
-    border: 1px solid var(--color-primary);
+    border-width: 1px;
+    border-style: solid;
     color: white;
-    background-color: var(--color-primary-light);
     border-radius: calc(var(--border-radius) / 4);
     padding: 8px 16px;
     font-weight: 500;
@@ -13,6 +13,4 @@
 
 .button:hover {
     cursor: pointer;
-    color: white;
-    background-color: var(--color-primary);
 }

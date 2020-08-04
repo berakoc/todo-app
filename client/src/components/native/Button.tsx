@@ -1,27 +1,36 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import './Button.css'
+import { EmptyState } from '../../libs/Interfaces'
 
 interface ButtonProps {
     text: string
     handler(): void
+    colorName: string
 }
 
-interface ButtonState {}
+export default class Button extends Component<ButtonProps, EmptyState> {
+    private buttonRef: React.RefObject<HTMLDivElement>
 
-export default class Button extends Component<ButtonProps, ButtonState> {
-    static propTypes: object
+    constructor(props: ButtonProps) {
+        super(props)
+        this.buttonRef = React.createRef()
+        this.activateButton = this.activateButton.bind(this)
+        this.deactivateButton = this.deactivateButton.bind(this)
+    }
+
+    activateButton() {
+        this.buttonRef.current!.style.backgroundColor = `var(--${this.props.colorName})`
+    }
+
+    deactivateButton() {
+        this.buttonRef.current!.style.backgroundColor = `var(--${this.props.colorName}-light)`
+    }
 
     render() {
         return (
-            <div onClick={(_) => this.props.handler()} className="animated button">
+            <div style={{backgroundColor: `var(--${this.props.colorName}-light)`, borderColor: `var(--${this.props.colorName})`}} ref={this.buttonRef} onClick={(_) => this.props.handler()} onMouseEnter={this.activateButton} onMouseLeave={this.deactivateButton} className="animated button">
                 {this.props.text}
             </div>
         )
     }
-}
-
-Button.propTypes = {
-    text: PropTypes.string.isRequired,
-    handler: PropTypes.func.isRequired
 }
