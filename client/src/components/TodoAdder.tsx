@@ -6,10 +6,11 @@ import Button from './native/Button'
 import Card from './native/Card'
 import Utils from '../libs/Utils'
 import Middleware from '../libs/Middleware'
+import { CardHandleOption } from '../libs/Enums'
 
 interface TodoProps {
     addTodoCard(card: JSX.Element | void): void
-    removeTodoCard(card: JSX.Element | void): void
+    removeTodoCard(card: JSX.Element, option: CardHandleOption | void): void
 }
 
 interface TodoAdderState {

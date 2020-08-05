@@ -5,6 +5,7 @@ import SlideBar from './SlideBar'
 import { TodoDatabaseInterface } from '../../libs/Interfaces'
 import Middleware from '../../libs/Middleware'
 import Utils from '../../libs/Utils'
+import { CardHandleOption } from '../../libs/Enums'
 
 interface CardListProps {
     ref: Function
@@ -28,13 +29,13 @@ export default class CardList extends Component<CardListProps, CardListState>{
         this.generateCardSet = this.generateCardSet.bind(this)
         this.updateIndexAndCardSet = this.updateIndexAndCardSet.bind(this)
         this.addTodoCard = this.addTodoCard.bind(this)
-        this.finishTodoCard = this.finishTodoCard.bind(this)
+        this.handleCard = this.handleCard.bind(this)
     }
 
     componentDidMount() {
         Middleware.getTodos().then(todos => {
             const cards = (todos as TodoDatabaseInterface[]).map(todo => {
-                return <Card handleClick={this.finishTodoCard} title={todo.title} content={todo.content} date={todo.date} />
+                return <Card handleClick={this.handleCard} title={todo.title} content={todo.content} date={todo.date} />
             })
             this.setState({
                 cards: this.state.cards.concat(cards)
@@ -59,7 +60,7 @@ export default class CardList extends Component<CardListProps, CardListState>{
         })
     }
 
-    finishTodoCard(card: JSX.Element) {
+    handleCard(card: JSX.Element, option: CardHandleOption) {
         let removalIndex = -1
         const cards = this.state.cards
         const length = cards.length
@@ -86,7 +87,11 @@ export default class CardList extends Component<CardListProps, CardListState>{
                     isSlideBarVisible: false
                 })
             }
-            Middleware.finishTodo(result.removedElement.props.date)
+            if (option === CardHandleOption.FINISH) {
+                Middleware.finishTodo(result.removedElement.props.date)
+            } else if (option === CardHandleOption.DELETE) {
+                Middleware.deleteTodo(result.removedElement.props.date)
+            }
         })
     }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Card.css'
 import { EmptyState } from '../../libs/Interfaces'
 import DotButton from './DotButton'
+import { CardHandleOption } from '../../libs/Enums'
 
 interface CardProps {
     title: string,
@@ -20,8 +21,8 @@ export default class Card extends Component<CardProps, EmptyState> {
                 <div className="flexTwo">
                     <div className="title">{this.props.title}</div>
                     <div className="buttonSet">
-                        <DotButton text="Finish" colorName="color-success" handler={() => this.props.handleClick(this)} margin={true} />
-                        <DotButton text="Delete" colorName="color-warning" handler={() => console.log('Deleted ✔')} />
+                        <DotButton text="Finish" colorName="color-success" handler={() => this.props.handleClick(this, CardHandleOption.FINISH)} margin={true} />
+                        <DotButton text="Delete" colorName="color-warning" handler={() => this.props.handleClick(this, CardHandleOption.DELETE)} />
                     </div>
                 </div>
                 <div className="verticalSeparatorSmall"></div>

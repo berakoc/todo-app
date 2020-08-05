@@ -3,10 +3,11 @@ import './Main.css'
 import TodoAdder from './TodoAdder'
 import CardList from './native/CardList'
 import { EmptyProps } from '../libs/Interfaces'
+import { CardHandleOption } from '../libs/Enums'
 
 interface TodoAdderState {
     addTodoCard(card: JSX.Element | void): void
-    finishTodoCard(card: JSX.Element | void): void
+    handleCard(card: JSX.Element, option: CardHandleOption | void): void
 }
 
 // TODO: Create the state schema for handling cards and index
@@ -17,23 +18,23 @@ export default class Main extends Component<EmptyProps, TodoAdderState> {
         super(props)
         this.cardListRef = (cardList: CardList) => {
             const addTodoCard = cardList.addTodoCard
-            const finishTodoCard = cardList.finishTodoCard
+            const handleCard = cardList.handleCard
             this.setState({
                 addTodoCard,
-                finishTodoCard
+                handleCard
             })
         }
         const emptyFunction = () => {}
         this.state = {
             addTodoCard: emptyFunction,
-            finishTodoCard: emptyFunction
+            handleCard: emptyFunction
         }
     }
 
     render() {
         return (
             <div id="Main">
-                <TodoAdder removeTodoCard={this.state.finishTodoCard} addTodoCard={this.state.addTodoCard} />
+                <TodoAdder removeTodoCard={this.state.handleCard} addTodoCard={this.state.addTodoCard} />
                 <div className="verticalSeparator"></div>
                 <CardList ref={this.cardListRef} />
             </div>

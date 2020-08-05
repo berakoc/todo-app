@@ -5,10 +5,11 @@ const API_ROOT_ADDRESS = 'http://localhost:5050/api/todo-io/todos'
 
 class $middleware {
 
-    getTodos(isFinished:boolean=false): Promise<TodoDatabaseInterface[] | void> {
+    getTodos(isFinished?:boolean, all?:boolean): Promise<TodoDatabaseInterface[] | void> {
         return axios
             .get(API_ROOT_ADDRESS, {
                 params: {
+                    all,
                     isFinished
                 }
             })
@@ -43,6 +44,24 @@ class $middleware {
             })
             .then(response => {
                 console.log(response)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
+    deleteTodo(date: string) {
+        axios
+            .delete(`${API_ROOT_ADDRESS}/delete`, {
+                params: {
+                    date
+                }
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.error(error)
             })
     }
 }

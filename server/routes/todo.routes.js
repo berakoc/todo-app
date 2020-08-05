@@ -67,7 +67,7 @@ todoRouter.delete('/delete', async (req, res) => {
     const isTestingMode = req.body.isTestingMode
     if (!isTestingMode) {
         const query = {
-            date: req.body.date
+            date: req.query.date
         }
         await Todo.deleteOne(query, err => {
             if (err) {
