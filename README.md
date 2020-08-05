@@ -30,7 +30,10 @@ Then in the second terminal write commands below:
 cd ..\client
 npm start
 ```
-Voila! Now you should see application in your browser screen
+
+![App Image](screenshots/app.screenshot.PNG)
+
+Voila! Now you should see application in your browser screen like above.
 
 ### Unix 🖥️
 
@@ -57,7 +60,7 @@ cd ./server && npm test
 There are three predefined scripts for testing:<br>
 1. npm test: Runs the default testing. Runs test suites for one time with basic info.
 2. npm run test:coverage: Runs unit tests for one time but with coverage. Coverage shows the function stack in a table and shows the consumed time for each one.
-3. npm run test:watch: Runs unit tests when there is a difference in test suites. Also has miscallenous options to run.
+3. npm run test\:watch: Runs unit tests when there is a difference in test suites. Also has miscallenous options to run.
 
 ## Contributing 🙋‍♂️
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
