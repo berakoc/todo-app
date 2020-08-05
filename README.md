@@ -60,7 +60,7 @@ cd ./server && npm test
 There are three predefined scripts for testing:<br>
 1. npm test: Runs the default testing. Runs test suites for one time with basic info.
 2. npm run test:coverage: Runs unit tests for one time but with coverage. Coverage shows the function stack in a table and shows the consumed time for each one.
-3. npm run test\:watch: Runs unit tests when there is a difference in test suites. Also has miscallenous options to run.
+3. npm run test::watch: Runs unit tests when there is a difference in test suites. Also has miscallenous options to run.
 
 ## Contributing 🙋‍♂️
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -68,4 +68,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License 📃
-This project has licensed with [MIT](https://github.com/MuhammedBeraKoc/todo-app/blob/master/LICENSE).
+This project has been licensed with [MIT](https://github.com/MuhammedBeraKoc/todo-app/blob/master/LICENSE).
