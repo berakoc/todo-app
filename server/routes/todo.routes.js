@@ -63,4 +63,22 @@ todoRouter.put('/finish', async (req, res) => {
     }
 })
 
+todoRouter.delete('/delete', async (req, res) => {
+    const isTestingMode = req.body.isTestingMode
+    if (!isTestingMode) {
+        const query = {
+            date: req.body.date
+        }
+        await Todo.deleteOne(query, err => {
+            if (err) {
+                consoleLogger.error(err)
+                process.exit(1)
+            }
+            res.send(`Todo[date="${query.date}"] has been deleted.`)
+        })
+    } else {
+        res.json('Deleted the given todo.')
+    }
+})
+
 module.exports = todoRouter

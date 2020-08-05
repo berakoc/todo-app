@@ -12,12 +12,10 @@ it ('should be OK for the request [GET /]', async done => {
 })
 
 const todoRouterRoot = '/api/todo-io/todos'
-const addPath = '/add'
-const finishPath = '/finish'
 
-it(`should be OK for the request [POST ${todoRouterRoot}${addPath}]`, async done => {
+it(`should be OK for the request [POST ${todoRouterRoot}/add]`, async done => {
     const response =  await request
-        .post(`${todoRouterRoot}${addPath}`)
+        .post(`${todoRouterRoot}/add`)
         .send({
             title: 'Test Title',
             content: 'Test content',
@@ -41,13 +39,24 @@ it(`should be OK for the request [GET ${todoRouterRoot}]`, async done => {
     done()
 })
 
-it(`should be OK for the request [GET ${todoRouterRoot}${finishPath}]`, async (done) => {
+it(`should be OK for the request [GET ${todoRouterRoot}/finish]`, async done => {
     const response = await request
-        .put(`${todoRouterRoot}${finishPath}`)
+        .put(`${todoRouterRoot}/finish`)
         .send({
             isTestingMode: true
         })
     expect(response.status).toBe(200)
     expect(response.body).toBe('Updated given todo as finished.')
+    done()
+})
+
+it(`should be OK for the request [DELETE ${todoRouterRoot}/delete`, async done => {
+    const response = await request
+        .delete(`${todoRouterRoot}/delete`)
+        .send({
+            isTestingMode: true
+        })
+    expect(response.status).toBe(200)
+    expect(response.body).toBe('Deleted the given todo.')
     done()
 })
