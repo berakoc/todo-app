@@ -1,2 +1,5 @@
-# todo-app
-A minimal Todo app with React and Express
+<div align="center">
+	<br>
+        <img src="./header.svg" width="800" height="400">
+	<br>
+</div>
