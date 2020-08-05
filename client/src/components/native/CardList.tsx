@@ -6,6 +6,7 @@ import { TodoDatabaseInterface } from '../../libs/Interfaces'
 import Middleware from '../../libs/Middleware'
 import Utils from '../../libs/Utils'
 import { CardHandleOption } from '../../libs/Enums'
+import { SLIDE_BAR_DOT_LIMIT } from '../../libs/Globals'
 
 interface CardListProps {
     ref: Function
@@ -15,16 +16,24 @@ interface CardListState {
     index: number
     cards: Array<JSX.Element>
     isSlideBarVisible: boolean
+    updateMultiplierProxy: (accumulator: number) => void
 }
 
 export default class CardList extends Component<CardListProps, CardListState>{
+    private slideBarRef: (s: SlideBar) => void
 
     constructor(props: CardListProps) {
         super(props)
         this.state = {
             index: 0,
             cards: [],
-            isSlideBarVisible: true
+            isSlideBarVisible: true,
+            updateMultiplierProxy: Utils.emptyFunction
+        }
+        this.slideBarRef = (slideBar: SlideBar) => {
+            this.setState({
+                updateMultiplierProxy: slideBar.updateMultiplier
+            })
         }
         this.generateCardSet = this.generateCardSet.bind(this)
         this.updateIndexAndCardSet = this.updateIndexAndCardSet.bind(this)
@@ -69,6 +78,9 @@ export default class CardList extends Component<CardListProps, CardListState>{
                 removalIndex = i
                 break
             }
+        }
+        if (length % SLIDE_BAR_DOT_LIMIT === 1) {
+            this.state.updateMultiplierProxy(-1)
         }
         const result = Utils.removeArrayElement<JSX.Element>(this.state.cards, removalIndex)
         this.setState({
@@ -138,7 +150,7 @@ export default class CardList extends Component<CardListProps, CardListState>{
             <div className="cardList animated">
                 {this.generateCardSet()}
                 <div className={this.state.isSlideBarVisible ? '': 'invisible'}>
-                    <SlideBar sendIndexProxy={this.updateIndexAndCardSet} currentIndex={this.state.index} numberOfCards={this.state.cards.length} />
+                    <SlideBar ref={this.slideBarRef} sendIndexProxy={this.updateIndexAndCardSet} currentIndex={this.state.index} numberOfCards={this.state.cards.length} />
                 </div>
             </div>
         )

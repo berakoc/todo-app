@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './SlideBar.css'
 import * as Feather from 'react-feather'
+import { SLIDE_BAR_DOT_LIMIT } from '../../libs/Globals'
 
 interface SlideBarProps {
     sendIndexProxy(index: number): void
@@ -12,14 +13,14 @@ interface SlideBarState {
     multiplier: number
 }
 
-const SLIDE_BAR_DOT_LIMIT = 5
-
+// BUG: Doesn't work well when you try to delete the last dot when there are 6 dots
 export default class SlideBar extends Component<SlideBarProps, SlideBarState> {
     constructor(props: SlideBarProps) {
         super(props)
         this.state = {
             multiplier: 0
         }
+        this.updateMultiplier = this.updateMultiplier.bind(this)
     }
 
     computeMaximumMultiplier() {

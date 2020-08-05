@@ -1,0 +1,1 @@
+export const SLIDE_BAR_DOT_LIMIT = 5

@@ -17,4 +17,6 @@ export default class Utils {
             removedElement: array[removalIndex]
         }
     }
+
+    static emptyFunction = () => {}
 }
